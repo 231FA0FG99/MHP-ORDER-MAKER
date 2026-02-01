@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .order-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .order-items {
+            margin-left: 20px;
+        }
+        .order-total {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        #orders-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <h1>Orders History</h1>
+        <a href="mhp.html" style="color:#ff8707">Back to Menu</a>
+    </div>
+    
+    <div id="orders-container">
+        <!-- Orders will be displayed here -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const orders = JSON.parse(localStorage.getItem('restaurantOrders') || '[]');
+            const container = document.getElementById('orders-container');
+            
+            if (orders.length === 0) {
+                container.innerHTML = '<p>No orders found.</p>';
+                return;
+            }
+            
+            orders.reverse().forEach((order, index) => {
+                const orderCard = document.createElement('div');
+                orderCard.className = 'order-card';
+                
+                let itemsHtml = '';
+                order.items.forEach(item => {
+                    itemsHtml += `<div>${item.name} x ${item.quantity} = Rs ${item.total}</div>`;
+                });
+                
+                orderCard.innerHTML = `
+                    <h3>Order #${orders.length - index} - ${order.date}</h3>
+                    <div class="order-items">${itemsHtml}</div>
+                    <div class="order-total">Total: Rs ${order.total}</div>
+                `;
+                
+                container.appendChild(orderCard);
+            });
+        });
+    </script>
+</body>
+</html>

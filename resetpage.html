@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reset Password</title>
+  <style>
+    body {
+      margin: 0%;
+      padding: 0%;
+      display: flex;
+      align-items: center;
+      height: 100vh;
+      justify-content: center;
+      background-image: -webkit-radial-gradient(rgb(255, 179, 0), rgb(236, 85, 48));
+    }
+
+    #reset-box {
+      border: solid rgb(242, 235, 235) 3px;
+      padding: 50px;
+      border-radius: 15px;
+      width: 30%;
+      text-align: center;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 15px;
+      border: solid white 1px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    #submit-reset {
+      background-color: rgb(255, 179, 0);
+      color: white;
+      border-radius: 15px;
+      padding: 12px;
+      width: 40%;
+      border: solid white 1px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="reset-box">
+    <form id="resetForm">
+      <h3 style="color: aliceblue;">RESET PASSWORD</h3>
+      <input type="email" id="resetEmail" class="input-field" placeholder="Enter your email" required /><br>
+      <input type="password" id="newPassword" class="input-field" placeholder="Enter new password" required /><br>
+      <input type="password" id="confirmPassword" class="input-field" placeholder="Confirm new password" required /><br>
+      <button type="submit" id="submit-reset">Reset</button><br><br>
+      <label>Back to login? </label><a href="formvalidation.html">Login</a>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("resetForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const email = document.getElementById("resetEmail").value.trim();
+      const newPass = document.getElementById("newPassword").value.trim();
+      const confirmPass = document.getElementById("confirmPassword").value.trim();
+
+      if (newPass !== confirmPass) {
+        alert("Passwords do not match!");
+      } else {
+        alert("Password has been reset successfully!");
+        // You can redirect or save logic here
+        window.location.href = "formvalidation.html";
+      }
+    });
+  </script>
+</body>
+</html>

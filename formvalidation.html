@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            height: 100vh;
+            justify-content: center;
+            background-image: -webkit-radial-gradient(rgb(255, 179, 0), rgb(236, 85, 48));
+        }
+        #login {
+            border: solid rgb(242, 235, 235) 3px;
+            padding: 50px;
+            border-radius: 15px;
+            width: 30%;
+            text-align: center;
+        }
+        .user {
+            width: 100%;
+            padding: 15px;
+            border: solid white 1px;
+            border-radius: 10px;
+            text-align: justify;
+        }
+        #submit, #reset {
+            color: white;
+            border-radius: 15px;
+            padding: 12px;
+            width: 40%;
+            border: solid white 1px;
+        }
+        #submit {
+            background-color: rgb(255, 179, 0);
+        }
+        #reset {
+            background-color: rgb(251, 106, 10);
+        }
+    </style>
+</head>
+<body>
+    <div id="login">
+        <form onsubmit="return false;">
+            <h3 style="color: aliceblue;">LOGIN TO MHP</h3>
+            <input type="email" id="email" class="user" placeholder="@gmail.com" /><br><br>
+            <input type="password" id="password" class="user" placeholder="valid password" /><br><br>
+            <button id="submit" type="button" onclick="validate()">Submit</button>
+            <a href="resetpage.html">
+                <button id="reset" type="button">Reset</button>
+              </a><br><br>
+            <label style="color: aliceblue;">Don't have an account: </label><a href="signup.html" style="color: greenyellow">Signup</a>
+        </form>
+    </div>
+    <script>
+        function validate() {
+            
+            var email = document.getElementById("email").value;
+            var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+           
+            
+            var password = document.getElementById("password").value;
+
+            if (email === "" || password === "") {
+                alert("Please fill all the fields");
+            }
+            else  if(!pattern.test(email)) {
+                alert("Invalid email!");
+                return false;
+            }
+             else {
+                alert("Login Successful");
+                window.location.href = "mhp.html";
+            }
+        }
+
+        
+    </script>
+</body>
+</html>
